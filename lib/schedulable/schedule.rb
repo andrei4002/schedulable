@@ -31,7 +31,7 @@ module Schedulable
       end
       
       def self.param_names
-        [:id, :date, :time, :rule, :until, :count, :interval, day: [], day_of_week: [monday: [], tuesday: [], wednesday: [], thursday: [], friday: [], saturday: [], sunday: []]]
+        [:id, :duration, :date, :time, :rule, :until, :count, :interval, day: [], day_of_week: [monday: [], tuesday: [], wednesday: [], thursday: [], friday: [], saturday: [], sunday: []]]
       end
     
       def update_schedule()
@@ -46,7 +46,7 @@ module Schedulable
         end
 
         @schedule = IceCube::Schedule.new(time)
-        
+
         if self.rule && self.rule != 'singular'
           
           self.interval = self.interval.present? ? self.interval.to_i : 1
@@ -76,6 +76,10 @@ module Schedulable
             end
           end
           @schedule.add_recurrence_rule(rule)
+        end
+
+        if self.duration
+          @schedule.duration = self.duration
         end
         
       end

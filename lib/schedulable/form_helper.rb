@@ -157,7 +157,7 @@ module Schedulable
               content_wrap(@template, f.label(:time, style_options[:label_html]), style_options[:label_wrapper]) <<
               content_wrap(@template, f.time_select(:time, date_options, style_options[:date_select_html]), style_options[:date_select_wrapper])
             end <<
-            
+
             (if input_options[:interval]
               @template.content_tag("div", style_options[:field_html].merge({data: {group: 'daily,weekly,monthly'}})) do
                 content_wrap(@template, f.label(:interval, style_options[:label_html]), style_options[:label_wrapper]) <<
@@ -175,7 +175,16 @@ module Schedulable
             else
               f.hidden_field(:until, value: nil)
             end) <<
-            
+
+            (if input_options[:duration]
+               @template.content_tag("div", style_options[:field_html].merge({data: {group: 'daily,weekly,monthly'}})) do
+                 content_wrap(@template, f.label(:duration, style_options[:label_html]), style_options[:label_wrapper]) <<
+                 content_wrap(@template, f.number_field(:duration, style_options[:number_field_html]), style_options[:number_field_wrapper])
+               end
+             else
+               f.hidden_field(:duration, value: 0)
+             end) <<
+
             if input_options[:count]
               @template.content_tag("div", style_options[:field_html].merge({data: {group: 'daily,weekly,monthly'}})) do
                 content_wrap(@template, f.label(:count, style_options[:label_html]), style_options[:label_wrapper]) <<

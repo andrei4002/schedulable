@@ -14,7 +14,8 @@ en:
         day_of_week: Weekdays of nth week
         until: Repeat until
         count: Repetition count
-        
+        duration: Duration in seconds
+
   schedulable: 
     monthly_week_names:
       1st: '1st'

@@ -14,7 +14,8 @@ class CreateSchedules < ActiveRecord::Migration
       
       t.datetime :until
       t.integer :count
-      
+      t.integer :duration
+
       t.timestamps
     end
   end
